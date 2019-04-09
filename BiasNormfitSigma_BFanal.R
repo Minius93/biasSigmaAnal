@@ -1,0 +1,187 @@
+#https://forum.cogsci.nl/discussion/4855/strange-behavior-with-bayesian-rm-anova
+#http://forum.cogsci.nl/uploads/154/21GH289RUT05.txt
+
+df <- structure(list(ID = structure(c(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 13L, 14L, 
+                                      1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 13L, 14L, 
+                                      1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 13L, 14L, 
+                                      1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 13L, 14L, 
+                                      1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 13L, 14L, 
+                                      1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 13L, 14L, 
+                                      1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 13L, 14L, 
+                                      1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 13L, 14L),
+                                    .Label = c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13",
+                                               "14"),
+                                    class = "factor"),
+                     cue = structure(c(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L,
+                                       1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L,
+                                       1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L,
+                                       1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
+                                       2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L,
+                                       2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L,
+                                       2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L,
+                                       2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L),
+                                      .Label = c("pre", "post", "n"),
+                                      class = "factor"),
+                     size = structure(c(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L,
+                                          2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L,
+                                          3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L,  
+                                          4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L,  
+                                          1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L,
+                                          2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L,
+                                          3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L,  
+                                          4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L, 4L),
+                                        .Label = c("1", "2", "3", "4"),
+                                        class = "factor"),
+                     biasSigma = c(0.098325414,
+                                   0.094306752,
+                                   0.160633488,
+                                   0.132156423,
+                                   0.15851038,
+                                   0.077369413,
+                                   0.0732474,
+                                   0.197101281,
+                                   0.151682604,
+                                   0.116787414,
+                                   0.130777825,
+                                   0.07626335,
+                                   0.119959939,
+                                   0.13844557,
+                                   0.101163631,
+                                   0.079243334,
+                                   0.137481957,
+                                   0.093321754,
+                                   0.148387914,
+                                   0.082158526,
+                                   0.086215596,
+                                   0.207793377,
+                                   0.149294718,
+                                   0.137421927,
+                                   0.124749045,
+                                   0.080200263,
+                                   0.106156566,
+                                   0.135086273,
+                                   0.085800647,
+                                   0.068753225,
+                                   0.16067422,
+                                   0.115457724,
+                                   0.150928123,
+                                   0.06814384,
+                                   0.076345398,
+                                   0.176299092,
+                                   0.156098307,
+                                   0.135566081,
+                                   0.120557404,
+                                   0.075576425,
+                                   0.117185105,
+                                   0.150632292,
+                                   0.115943445,
+                                   0.082833678,
+                                   0.165881562,
+                                   0.137274025,
+                                   0.126771385,
+                                   0.076950187,
+                                   0.100262313,
+                                   0.153749955,
+                                   0.170920926,
+                                   0.152180843,
+                                   0.13105092,
+                                   0.081813456,
+                                   0.127773924,
+                                   0.155928244,
+                                   0.075181229,
+                                   0.106065994,
+                                   0.169021674,
+                                   0.165192771,
+                                   0.190482582,
+                                   0.092792873,
+                                   0.110537928,
+                                   0.216011781,
+                                   0.119573034,
+                                   0.20347341,
+                                   0.146028392,
+                                   0.090069354,
+                                   0.10299137,
+                                   0.096882409,
+                                   0.076155038,
+                                   0.090903147,
+                                   0.188904284,
+                                   0.19997141,
+                                   0.192766395,
+                                   0.091422775,
+                                   0.100134775,
+                                   0.183646904,
+                                   0.135396988,
+                                   0.191511586,
+                                   0.135919235,
+                                   0.092905937,
+                                   0.125993576,
+                                   0.098107283,
+                                   0.078585323,
+                                   0.096652968,
+                                   0.154351094,
+                                   0.205263332,
+                                   0.186145147,
+                                   0.085749698,
+                                   0.129023951,
+                                   0.181092585,
+                                   0.137683564,
+                                   0.195232765,
+                                   0.123346461,
+                                   0.079470014,
+                                   0.103227018,
+                                   0.094179446,
+                                   0.080447162,
+                                   0.103654106,
+                                   0.194044834,
+                                   0.200276971,
+                                   0.177649911,
+                                   0.101039207,
+                                   0.127026448,
+                                   0.189777179,
+                                   0.135438507,
+                                   0.202600502,
+                                   0.122852184,
+                                   0.097590317,
+                                   0.11359863,
+                                   0.131441285
+                     )),
+                class = "data.frame", row.names = c(NA,-112L))
+
+
+library(afex)
+library(BayesFactor)
+library(BFEffects)
+library(readr)
+#dataset <- read_csv("Sigma.csv")
+
+rmanova <- aov_ez('ID','biasSigma', df,within = c('cue','size'))
+rmanova
+BF <-   generalTestBF(biasSigma ~ cue * size, df, progress = FALSE)
+inclusionBF(BF)
+
+BF_norandomeffects <- generalTestBF(biasSigma ~ cue*size + ID,df,
+                                    whichRandom = c('ID'),
+                                    whichModels = 'withmain')
+inclusionBF(BF_norandomeffects, match_models = TRUE)
+
+
+BF_withrandomeffects <- generalTestBF(biasSigma ~ cue*size*ID,df,
+                                      whichRandom = c('ID','cue:ID','size:ID','cue:size:ID'),
+                                      whichModels = 'withmain')
+inclusionBF(BF_withrandomeffects, match_models = TRUE)
+
+
+
+
+
+
+#rmanova <- aov_ez('ID','rt',df,within = c('cong','goNogo'))
+#rmanova
+#BF_norandomeffects <- generalTestBF(rt ~ cong*goNogo + ID,df,
+#                                    whichRandom = c('ID'),
+#                                    whichModels = 'withmain')
+#inclusionBF(BF_norandomeffects, match_models = TRUE)
+#BF_withrandomeffects <- generalTestBF(rt ~ cong*goNogo*ID,df,
+#                                      whichRandom = c('ID','cong:ID','goNogo:ID','cong:goNogo:ID'),
+#                                      whichModels = 'withmain')
+#inclusionBF(BF_withrandomeffects, match_models = TRUE)
